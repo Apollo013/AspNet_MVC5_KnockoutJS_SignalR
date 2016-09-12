@@ -1,5 +1,6 @@
 ﻿using ChatRooms.Models.ChatRoom;
 using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json;
 using System;
 
 namespace ChatRooms.Hubs
@@ -26,7 +27,7 @@ namespace ChatRooms.Hubs
                 MessageType = 0,
                 User = user.Name
             };
-            Clients.All.registerNewUser(message);                                       // Notify everyone
+            Clients.All.registerNewUser(JsonConvert.SerializeObject(message));          // Notify everyone
         }
 
         public void SendMessageToChatRoom(string content, string currentChatroom)
@@ -39,7 +40,7 @@ namespace ChatRooms.Hubs
                 MessageType = 1,
                 User = user.Name
             };
-            Clients.Group(currentChatroom).registerMessage(message);
+            Clients.Group(currentChatroom).registerMessage(JsonConvert.SerializeObject(message));
         }
 
         /// <summary>

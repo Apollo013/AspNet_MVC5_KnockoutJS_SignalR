@@ -72,7 +72,7 @@
         },
 
         sendMessage: function () {
-            if (!Connected()) { return;}
+            if (!Connected() || this.message() === "") { return;}
             var self = this;
             chatHub.server.sendMessageToChatRoom(this.message(), this.currentRoom()).done(
                 function () {
