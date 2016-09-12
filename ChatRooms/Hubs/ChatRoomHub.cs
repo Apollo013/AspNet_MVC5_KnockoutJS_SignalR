@@ -4,6 +4,7 @@ using System;
 
 namespace ChatRooms.Hubs
 {
+    [Authorize]
     public class ChatRoomHub : Hub
     {
         ChatRoomsViewModel chatrooms = new ChatRoomsViewModel();
