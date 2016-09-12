@@ -9,7 +9,6 @@
     // Configure & start
     $.connection.hub.logging = true;
     $.connection.hub.start().done(function () {
-        connectionStarted = true;
         vm.joinChatRoom();
     });
 
@@ -22,6 +21,17 @@
         vm.addMessage(msg);
     }
 
+
+    // Common
+    var Connected = function () {
+        if (typeof ($.connection.hub.id) === 'undefined') {
+            vm.connected(false);
+            return false;
+        }
+        vm.connected(true);
+        return true;
+    }
+
     /*------------------------------------------------------------------------------
     Chatroom Object
     ------------------------------------------------------------------------------*/
@@ -31,6 +41,7 @@
         this.previousRoom = ko.observable();
         this.messages = ko.observableArray();
         this.message = ko.observable("");
+        this.connected = ko.observable(false);
 
         // Get list of chatrooms from server
         this.fetchChatRooms();
@@ -49,7 +60,7 @@
 
         joinChatRoom: function () {            
             var self = this;
-            if ((this.currentRoom === this.previousRoom) || !connectionStarted) { return; }
+            if ((this.currentRoom === this.previousRoom) || !Connected()) { return; }
             chatHub.server.joinChatRoom(this.currentRoom(), this.previousRoom()).done(
                 function () {
                     self.previousRoom(self.currentRoom());
@@ -60,7 +71,8 @@
             this.messages.push(msg);
         },
 
-        newMessage: function () {
+        sendMessage: function () {
+            if (!Connected()) { return;}
             var self = this;
             chatHub.server.sendMessageToChatRoom(this.message(), this.currentRoom()).done(
                 function () {
@@ -77,5 +89,6 @@
     $(function () {
         ko.applyBindings(vm);
     });
+
 
 }());

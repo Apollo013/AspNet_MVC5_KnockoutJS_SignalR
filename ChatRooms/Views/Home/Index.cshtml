@@ -7,9 +7,11 @@
     <div class="row padding-20">
         <div class="form-horizontal padding-20">
             <label for="rooms2" class="col-lg-2 control-label">Select Chat Room:</label>
-            <div class="col-lg-10">
+            <div class="col-lg-7">
                 <select data-bind="options: chatrooms,  value:currentRoom, event:{change: joinChatRoom}" class="form-control"></select>
             </div>
+            <div class="alert alert-danger col-lg-3" role="alert" data-bind="visible: !connected()">No Connection</div>
+            <div class="alert alert-success col-lg-3" role="alert" data-bind="visible: connected()">Connected</div>
         </div>
 
         <div class="form-horizontal padding-20">
@@ -17,7 +19,7 @@
             <div class="col-lg-9">
                 <input type="text" placeholder="Your message..." data-bind="value:message" class="form-control" />
             </div>
-            <button class="col-lg-1 btn btn-success" data-bind="click:newMessage">Send</button>
+            <button class="col-lg-1 btn btn-success" data-bind="click:sendMessage">Send</button>
         </div>
     </div>
 
@@ -32,7 +34,7 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: messages" class="table-hover">
-                <tr  class="bg-info" data-bind="css:{'bg-success': MessageType == 0}">
+                <tr class="bg-info" data-bind="css:{'bg-success': MessageType == 0}">
                     <td data-bind="text: Time"></td>
                     <td data-bind="text:User"></td>
                     <td data-bind="text: Content"></td>
@@ -40,14 +42,13 @@
             </tbody>
         </table>
     </div>
+}
+else
+{
+    <h1>Please Login >></h1>
+}
     
-    <span data-bind="text: previousRoom"></span>
-}
-else{ 
-<h1> Please Login</h1>
-}
-
-
+    
 @section scripts
 {
 <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
