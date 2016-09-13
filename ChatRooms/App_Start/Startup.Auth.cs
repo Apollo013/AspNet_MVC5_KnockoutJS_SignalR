@@ -64,7 +64,7 @@ namespace ChatRooms
             //    ClientSecret = ""
             //});
 
-            //CreateRolesAndUsers();
+            CreateRolesAndUsers();
         }
 
         private void CreateRolesAndUsers()
