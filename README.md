@@ -23,9 +23,6 @@ Developed using Visual Studio 2015 Community
 
 ###ChatRooms Project
 
-
-####Login
-
 A chatroom app that demonstrates how to use 'Groups' to channel messages to the relevent clients. This app requires a login as Hub methods can only be accessed by an authorized user (see login details below)
 
 |Name|Password|
