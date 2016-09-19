@@ -32,6 +32,12 @@ A chatroom app that demonstrates how to use 'Groups' to channel messages to the 
 
 ---
 
+###StockTicker Project
+
+a stock trader app that simulates real-time update of stock prices for 3 stock items. These updates are displayed using flot chartsd realtime graphs.
+
+---
+
 ###Resources
 |Title|Author|Website|
 |-----|------|-------|
