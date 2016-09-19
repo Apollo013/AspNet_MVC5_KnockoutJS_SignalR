@@ -8,17 +8,15 @@ Developed using Visual Studio 2015 Community
 ---
 
 ###Techs
-|Tech|
-|----|
-|Javascript|
-|jQuery|
-|HTML|
-|CSS|
-|KnockoutJS|
-|SignalR|
-|C#|
-|APS.NET MVC5|
-|Flot Charts (real-time)|
+|Tech| |
+|----|----|
+|Javascript|KnockoutJS|
+|jQuery|SignalR|
+|HTML|C#|
+|CSS|APS.NET MVC5|
+|RequireJS|Flot Charts (real-time)|
+|TextJS| |
+
 ---
 
 ###ChatRooms Project
