@@ -18,7 +18,7 @@ Developed using Visual Studio 2015 Community
 |SignalR|
 |C#|
 |APS.NET MVC5|
-
+|Flot Charts (real-time)|
 ---
 
 ###ChatRooms Project
@@ -34,7 +34,7 @@ A chatroom app that demonstrates how to use 'Groups' to channel messages to the 
 
 ###StockTicker Project
 
-a stock trader app that simulates real-time update of stock prices for 3 stock items. These updates are displayed using flot chartsd realtime graphs.
+A stock trader app that simulates real-time update of stock prices for 3 stock items. These updates are displayed using flot charts realtime graphs.
 
 ---
 
