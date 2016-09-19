@@ -77,7 +77,8 @@
             chatHub.server.sendMessageToChatRoom(this.message(), this.currentRoom()).done(
                 function () {
                     self.message("");
-                });
+                }
+            );
         }
     };
 

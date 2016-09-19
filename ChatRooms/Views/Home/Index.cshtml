@@ -2,52 +2,49 @@
     ViewBag.Title = "Home Page";
 }
 
-@if (Request.IsAuthenticated)
+@if (!Request.IsAuthenticated)
 {
-    <div class="row padding-20">
-        <div class="form-horizontal padding-20">
-            <label for="rooms2" class="col-lg-2 control-label">Select Chat Room:</label>
-            <div class="col-lg-7">
-                <select data-bind="options: chatrooms,  value:currentRoom, event:{change: joinChatRoom}" class="form-control"></select>
-            </div>
-            <div class="alert alert-danger col-lg-3" role="alert" data-bind="visible: !connected()">No Connection</div>
-            <div class="alert alert-success col-lg-3" role="alert" data-bind="visible: connected()">Connected</div>
-        </div>
+    Response.Redirect("~/Account/Login");
+}
 
-        <div class="form-horizontal padding-20">
-            <label class="col-lg-2 control-label">Enter Message:</label>
-            <div class="col-lg-9">
-                <input type="text" placeholder="Your message..." data-bind="value:message" class="form-control" />
-            </div>
-            <button class="col-lg-1 btn btn-success" data-bind="click:sendMessage">Send</button>
+<div class="row padding-20">
+    <div class="form-horizontal padding-20">
+        <label for="rooms2" class="col-lg-2 control-label">Select Chat Room:</label>
+        <div class="col-lg-7">
+            <select data-bind="options: chatrooms,  value:currentRoom, event:{change: joinChatRoom}" class="form-control"></select>
         </div>
+        <div class="alert alert-danger col-lg-3" role="alert" data-bind="visible: !connected()">No Connection</div>
+        <div class="alert alert-success col-lg-3" role="alert" data-bind="visible: connected()">Connected</div>
     </div>
 
-
-    <div class="row padding-20">
-        <table class="table">
-            <thead class="bg-primary">
-                <tr>
-                    <th>Time</th>
-                    <th>User</th>
-                    <th>Message</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: messages" class="table-hover">
-                <tr class="bg-info" data-bind="css:{'bg-success': MessageType == 0}">
-                    <td data-bind="text: Time"></td>
-                    <td data-bind="text: User"></td>
-                    <td data-bind="text: Content"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="form-horizontal padding-20">
+        <label class="col-lg-2 control-label">Enter Message:</label>
+        <div class="col-lg-9">
+            <input type="text" placeholder="Your message..." data-bind="value:message" class="form-control" />
+        </div>
+        <button class="col-lg-1 btn btn-success" data-bind="click:sendMessage">Send</button>
     </div>
-}
-else
-{
-    <h1>Please Login >></h1>
-}
-    
+</div>
+
+
+<div class="row padding-20">
+    <table class="table">
+        <thead class="bg-primary">
+            <tr>
+                <th>Time</th>
+                <th>User</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: messages" class="table-hover">
+            <tr class="bg-info" data-bind="css:{'bg-success': MessageType == 0}">
+                <td data-bind="text: Time"></td>
+                <td data-bind="text: User"></td>
+                <td data-bind="text: Content"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
     
 @section scripts
 {
