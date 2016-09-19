@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using StockTicker.EventArguments;
+using StockTicker.Models;
 using StockTicker.Services;
 
 namespace StockTicker.Hubs
@@ -8,9 +9,9 @@ namespace StockTicker.Hubs
     {
         private StockExchangeServiceBase _service;
 
-        public StockTickerHub(StockExchangeServiceBase service)
+        public StockTickerHub()
         {
-            _service = service;
+            _service = new StockExchangeService();
             _service.StockPriceChanged += UpdatePrice;
         }
 
@@ -18,11 +19,9 @@ namespace StockTicker.Hubs
         /// Add new ticker to get stock prices for, and add connection_id to ticker group
         /// </summary>
         /// <param name="ticker"></param>
-        public void AddTicker(string ticker)
+        public void AddTicker(int id, string name)
         {
-            string connectionId = Context.ConnectionId;
-            Groups.Add(connectionId, ticker); // Create a new group for stock ticker
-            _service.Add(ticker);
+            _service.Add(new StockBase(id, name));
         }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace StockTicker.Hubs
         /// <param name="args"></param>
         private void UpdatePrice(object sender, StockEventArgs args)
         {
-            Clients.Group(args.StockItem.Name).notifyStockChange(args.StockItem);
+            Clients.All.notifyStockChange(args.StockItem);
         }
     }
 }

@@ -10,15 +10,15 @@ namespace StockTicker.Services
     /// </summary>
     public abstract class StockExchangeServiceBase : IStockExchangeService<StockBase, StockEventArgs>
     {
-        protected List<string> Tickers = new List<string>();
+        protected List<StockBase> StockItems = new List<StockBase>();
         public event EventHandler<StockEventArgs> StockPriceChanged;
 
-        public void Add(string name)
+        public void Add(StockBase item)
         {
-            Tickers.Add(name);
+            StockItems.Add(item);
         }
 
-        public void Receive(StockBase item)
+        public void UpdatePrice(StockBase item)
         {
             if (item == null) { return; }
             StockPriceChanged?.Invoke(this, new StockEventArgs(item));

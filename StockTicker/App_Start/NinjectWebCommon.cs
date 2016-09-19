@@ -59,7 +59,7 @@ namespace StockTicker.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<StockExchangeServiceBase>().To<StockExchangeService>().InTransientScope();
+            kernel.Bind<StockExchangeServiceBase>().To<StockExchangeService>().InRequestScope();
         }
     }
 }

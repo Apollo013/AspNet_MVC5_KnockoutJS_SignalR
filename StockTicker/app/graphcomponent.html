@@ -1,0 +1,18 @@
+﻿<!-- Realtime Chart -->
+<div data-bind="attr:{'id': 'graph-container-' + $index()}" class="panel panel-default">
+
+    <div class="panel-heading">
+        <span class="elipsis">
+            <!-- panel title -->
+            <strong data-bind="text: $parent.name"></strong>
+        </span>
+    </div>
+
+    <!-- panel content -->
+    <div class="panel-body nopadding">
+        <div data-bind="attr: {'id': $parent.name}" class="flot-chart flot-realtime"><!-- FLOT CONTAINER --></div>
+    </div>
+    <!-- /panel content -->
+
+</div>
+<!-- /Realtime Chart -->

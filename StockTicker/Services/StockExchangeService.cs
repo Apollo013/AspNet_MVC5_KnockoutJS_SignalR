@@ -1,5 +1,4 @@
-﻿using StockTicker.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace StockTicker.Services
 {
@@ -20,11 +19,16 @@ namespace StockTicker.Services
         {
             Task monitor = Task.Factory.StartNew(async () =>
             {
-                foreach (var ticker in Tickers)
+                while (true)
                 {
-                    Receive(new StockBase(ticker));
+                    foreach (var stockItem in StockItems)
+                    {
+                        stockItem.GenerateNextPrice();
+                        UpdatePrice(stockItem);
+                    }
+                    await Task.Delay(1000);
                 }
-                await Task.Delay(500);
+
             }, TaskCreationOptions.LongRunning);
         }
     }
