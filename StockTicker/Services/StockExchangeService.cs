@@ -13,7 +13,7 @@ namespace StockTicker.Services
         }
 
         /// <summary>
-        /// Simulates stock prices change
+        /// Simulates regular stock prices change from a third party
         /// </summary>
         private void MonitorStockPrices()
         {

@@ -10,14 +10,15 @@
 
     stockticker.prototype = {
 
+        // Crete stock items to get price updates for
         init: function () {
             this.graphs.push(new graph("MKS"));
             this.graphs.push(new graph("AAPL"));
             this.graphs.push(new graph("INTC"));
         },
 
+        // Updates the price for a stock item
         updateGraph: function (data) {
-            //console.log(data);
             this.graphs()[data.Id].updateGraph(data);
         }
     };
@@ -46,6 +47,7 @@
         });
     });
 
+    // Update stock price received from server
     tickerhub.client.notifyStockChange = function (data) {
         vm.updateGraph(data);
     };

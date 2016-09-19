@@ -1,4 +1,7 @@
-﻿var graph = function (name) {
+﻿/*------------------------------------------------------
+View model for 'graphcomponent.html' template
+------------------------------------------------------*/
+var graph = function (name) {
 	this.name = name;
 	this.elemId = "#" + name;
 	this.data = [];
@@ -34,20 +37,20 @@ graph.prototype = {
 			}
 		}
 	},
+	// Updates price list data and redraws the graph
 	updateGraph: function (item) {
 		var count = this.data.length;
 		this.data.push([count, item.Price]);
 
 		// Only show the last 100 updates
 		if (count > 100) {
-		    this.data.shift();
-		    $.each(this.data, function (idx, item) {
-		        item[0] = idx;
-		    });
+			this.data.shift();
+			$.each(this.data, function (idx, item) {
+				item[0] = idx;
+			});
 		}
-		// Redraw graph
-		
+
+		// Redraw graph		
 		$.plot($(this.elemId), this.dataSet, this.options);
 	}
-
 };
