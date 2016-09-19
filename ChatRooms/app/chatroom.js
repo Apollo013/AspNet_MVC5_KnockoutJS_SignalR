@@ -12,17 +12,21 @@
         vm.joinChatRoom();
     });
 
-    // Client Methods
+
+    /*------------------------------------------------------------------------------
+    Client Methods
+    ------------------------------------------------------------------------------*/
+    // Displays a message thats notifies other users when a new user has joined
     chatHub.client.registerNewUser = function (msg) {
         vm.addMessage(msg);
     }
 
+    // Displays a mesasge sent by a user
     chatHub.client.registerMessage = function (msg) {
         vm.addMessage(msg);
     }
 
-
-    // Common
+    // A flag that ensures we can only send messsages when our websocket has connected
     var Connected = function () {
         if (typeof ($.connection.hub.id) === 'undefined') {
             vm.connected(false);
@@ -31,6 +35,7 @@
         vm.connected(true);
         return true;
     }
+
 
     /*------------------------------------------------------------------------------
     Chatroom Object
@@ -49,6 +54,7 @@
 
     chatroomModel.prototype = {
 
+        // Gets a list of valid chatrooms
         fetchChatRooms: function () {
             var self = this;
             $.getJSON("/Home/GetChatRooms/", null, function (data) {
@@ -58,6 +64,7 @@
             });
         },
 
+        // Registers a user with a specific chatroom
         joinChatRoom: function () {            
             var self = this;
             if ((this.currentRoom === this.previousRoom) || !Connected()) { return; }
@@ -67,10 +74,12 @@
                 });                       
         },
 
+        // Displays a message
         addMessage: function (msg) {
             this.messages.push(msg);
         },
 
+        // Broadcast a message to other users in the current chatroom
         sendMessage: function () {
             if (!Connected() || this.message() === "") { return;}
             var self = this;
@@ -90,6 +99,5 @@
     $(function () {
         ko.applyBindings(vm);
     });
-
 
 }());

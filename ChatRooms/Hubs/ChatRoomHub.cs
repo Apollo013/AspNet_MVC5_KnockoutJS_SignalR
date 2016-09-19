@@ -1,6 +1,5 @@
 ﻿using ChatRooms.Models.ChatRoom;
 using Microsoft.AspNet.SignalR;
-using Newtonsoft.Json;
 using System;
 
 namespace ChatRooms.Hubs
@@ -10,6 +9,11 @@ namespace ChatRooms.Hubs
     {
         ChatRoomsViewModel chatrooms = new ChatRoomsViewModel();
 
+        /// <summary>
+        /// Registers a person with a specific chat room
+        /// </summary>
+        /// <param name="currentChatroom"></param>
+        /// <param name="previousChatRoom"></param>
         public void JoinChatRoom(string currentChatroom, string previousChatRoom)
         {
             string connectionId = Context.ConnectionId;                                 // Get current connection identifier
@@ -27,9 +31,14 @@ namespace ChatRooms.Hubs
                 MessageType = 0,
                 User = user.Name
             };
-            Clients.All.registerNewUser(JsonConvert.SerializeObject(message));          // Notify everyone
+            Clients.All.registerNewUser(message);          // Notify everyone
         }
 
+        /// <summary>
+        /// Sends a message to the relevent clients
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="currentChatroom"></param>
         public void SendMessageToChatRoom(string content, string currentChatroom)
         {
             var user = Context.User.Identity;
@@ -40,11 +49,11 @@ namespace ChatRooms.Hubs
                 MessageType = 1,
                 User = user.Name
             };
-            Clients.Group(currentChatroom).registerMessage(JsonConvert.SerializeObject(message));
+            Clients.Group(currentChatroom).registerMessage(message);
         }
 
         /// <summary>
-        /// Removes user from all groups
+        /// Removes a user from all groups
         /// </summary>
         /// <param name="connectionId"></param>
         private void RemoveFromGroups(string connectionId)
