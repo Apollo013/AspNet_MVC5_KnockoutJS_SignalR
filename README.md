@@ -1,4 +1,5 @@
-# DotNet_Communications_SignalR_KnockoutJS
+# AspNet_MVC5_SignalR_KnockoutJS
+
 A couple of ASP.NET MVC  apps demonstrating websockets with SignalR. Data binding achieved through KnockoutJS and real time charts implemented using Flot Charts.
 
 ---
