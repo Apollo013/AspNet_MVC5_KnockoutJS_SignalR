@@ -20,7 +20,7 @@ Developed using Visual Studio 2015 Community
 
 ---
 
-###ChatRooms Project
+### ChatRooms Project
 
 A chatroom app that demonstrates how to use 'Groups' to channel messages to the relevent clients. This app requires a login as Hub methods can only be accessed by an authorized user (see login details below)
 
@@ -31,13 +31,13 @@ A chatroom app that demonstrates how to use 'Groups' to channel messages to the 
 
 ---
 
-###StockTicker Project
+### StockTicker Project
 
 A stock trader app that simulates real-time update of stock prices for 3 stock items. These updates are displayed using flot charts realtime graphs.
 
 ---
 
-###Resources
+### Resources
 |Title|Author|Website|
 |-----|------|-------|
 |[Introduction to SignalR](http://www.asp.net/signalr/overview/getting-started/introduction-to-signalr)| Patrick Fletcher| ASP.NET|
