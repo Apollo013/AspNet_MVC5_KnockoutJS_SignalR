@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/StockTicker/Properties/PublishProfiles/Apollo013StockTicker - Web Deploy.pubxml

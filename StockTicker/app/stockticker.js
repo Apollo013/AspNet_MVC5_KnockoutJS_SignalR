@@ -28,10 +28,10 @@
     View Binding
     ------------------------------------------------------------------------------*/
     var vm = new stockticker();
-    $(function () {
-        ko.components.register('graph', { template: { require: 'text!../app/graphcomponent.html' } });
-        ko.applyBindings(vm);
-    });
+    console.log("vm: " + vm);
+
+    ko.components.register('graph', { template: { require: 'text!../app/graphcomponent.html' } });
+    ko.applyBindings(vm);
 
 
     /*------------------------------------------------------------------------------
@@ -41,6 +41,7 @@
     $.connection.hub.logging = true;
 
     $.connection.hub.start().done(function () {
+        console.log("start");
         // Inform server what tickers we want price updates for
         $.each(vm.graphs(), function (idx, ticker) {
             tickerhub.server.addTicker(idx, ticker.name);
@@ -49,6 +50,7 @@
 
     // Update stock price received from server
     tickerhub.client.notifyStockChange = function (data) {
+        console.log("notifyStockChange");
         vm.updateGraph(data);
     };
 
